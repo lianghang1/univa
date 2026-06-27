@@ -1,9 +1,9 @@
-/* eslint-disable node/prefer-global/process */
-import type { FSWatcher } from 'chokidar'
 import type { ViteDevServer } from 'vite'
 import type { UnivaConfig } from '../types'
+import { join } from 'node:path'
 import { slash } from '@antfu/utils'
 import { loadConfig } from 'c12'
+import { createJiti } from 'jiti'
 import { ID } from '../constant'
 import { mergeWithArrayOverride } from '../utils/merge'
 import { extractPagesJsonContent, generatePagesConfigFile, hasPagesJsonContent } from './pages'
@@ -19,20 +19,43 @@ export class UnivaContext {
   configPath: string
   root: string
 
-  constructor(options: { root?: string, config?: UnivaConfig }) {
-    this.root = options.root || process.cwd()
+  constructor(options: { root: string, config?: UnivaConfig }) {
+    this.root = options.root
     this.configPath = ''
     this.config = options.config || {}
   }
 
-  async loadUserConfig() {
+  /**
+   * 同步加载用户配置
+   */
+  loadUserConfigSync() {
+    const jiti = createJiti(this.root)
+    const configFile = join(this.root, `${ID}.config`)
+
+    try {
+      const configModule = jiti(configFile)
+      const userConfig = configModule?.default || configModule
+
+      // 合并用户传入的默认配置
+      this.config = mergeWithArrayOverride(this.config || {}, userConfig)
+      this.configPath = jiti.resolve(configFile)
+    }
+    catch {
+      // 配置文件不存在，使用默认配置
+    }
+  }
+
+  /**
+   * 异步加载用户配置
+   */
+  async loadUserConfigAsync() {
     const { config: userConfig, configFile } = await loadConfig<UnivaConfig>({
       name: ID,
       cwd: this.root,
       defaults: this.config || {},
       merger: mergeWithArrayOverride as any,
     })
-    console.log(userConfig)
+
     this.config = userConfig
     this.configPath = configFile || ''
   }
@@ -51,7 +74,10 @@ export class UnivaContext {
   /**
    * 设置文件监听器
    */
-  async setupWatcher(watcher: FSWatcher) {
+  setupWatcher(watcher: ViteDevServer['watcher']) {
+    if (!this.configPath)
+      return
+
     watcher.add(this.configPath)
 
     watcher.on('change', async (filePath) => {
@@ -69,7 +95,7 @@ export class UnivaContext {
   }
 
   async updateConfig() {
-    await this.loadUserConfig()
+    await this.loadUserConfigAsync()
     this.updateGeneratedFiles()
   }
 

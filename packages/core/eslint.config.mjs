@@ -16,6 +16,7 @@ export default uniHelper(
       'vue/no-unused-refs': 'off',
       'unused-imports/no-unused-vars': 'off',
       'eslint-comments/no-unlimited-disable': 'off',
+      'pnpm/json-enforce-catalog': 'off',
     },
   },
 )

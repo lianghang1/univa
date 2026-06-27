@@ -11,17 +11,17 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^8.2.0",
+    "@antfu/eslint-config": "catalog:",
     "@commitlint/cli": "20.5.0",
     "@commitlint/config-conventional": "20.5.0",
-    "@types/node": "^24.12.2",
-    "eslint": "^10.2.1",
-    "esno": "^4.8.0",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "esno": "4.8.0",
     "husky": "9.1.7",
     "inquirer": "12.9.3",
     "lint-staged": "16.4.0",
     "standard-version": "9.5.0",
-    "typescript": "^5.4.0"
+    "typescript": "catalog:"
   },
   "lint-staged": {
     "*": "eslint --fix"

@@ -96,20 +96,21 @@ export function generatePagesConfigFile(content: Partial<PagesConfig>, cwd: stri
 
 export function createPagesPlugin(config: PagesOptions | PagesPluginOptions | true, cwd: string): Plugin[] {
   const pagesConfig = config === true ? {} : config
+  const univaDir = getUnivaDir(cwd)
 
   if (pagesConfig && hasPagesJsonContent(pagesConfig)) {
     const jsonContent = extractPagesJsonContent(pagesConfig as PagesOptions)
     if (jsonContent) {
       generatePagesConfigFile(jsonContent, cwd)
     }
-
-    const pluginOptions = extractPluginOptions(pagesConfig as PagesOptions)
-    pluginOptions.configSource = getPagesConfigPath(cwd)
-
-    const result = VitePluginUniPages(pluginOptions as any)
-    return Array.isArray(result) ? result : [result]
   }
 
-  const result = VitePluginUniPages(pagesConfig as any)
+  const pluginOptions = extractPluginOptions(pagesConfig as PagesOptions)
+  pluginOptions.configSource = getPagesConfigPath(cwd)
+
+  const result = VitePluginUniPages({
+    dts: `${univaDir}/uni-pages.d.ts`,
+    ...pluginOptions,
+  })
   return Array.isArray(result) ? result : [result]
 }

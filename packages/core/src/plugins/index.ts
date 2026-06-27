@@ -1,4 +1,5 @@
-import type { Plugin } from 'vite'
+/* eslint-disable node/prefer-global/process */
+import type { PluginOption } from 'vite'
 import type { UnivaConfig } from '../types'
 import Uni from '@uni-helper/plugin-uni'
 import VitePluginUniComponents from '@uni-helper/vite-plugin-uni-components'
@@ -12,18 +13,24 @@ import { createPagesPlugin } from './pages'
 
 let context: UnivaContext
 
-function createCorePlugin(): Plugin {
+function createCorePlugin(): PluginOption {
   return {
     name: 'vite-plugin-univa',
     enforce: 'pre',
+
+    async configResolved() {
+      await context.loadUserConfigAsync()
+      context.updateGeneratedFiles()
+    },
+
     configureServer(server) {
       context.setupViteServer(server)
     },
   }
 }
 
-export function createUnivaPlugins(config: UnivaConfig = { root: false }): Plugin[] {
-  const plugins: Plugin[] = []
+export function createUnivaPlugins(config: UnivaConfig = { root: false }): PluginOption[] {
+  const plugins: PluginOption[] = []
   const univaDir = getUnivaDir(context.root)
 
   plugins.push(createCorePlugin())
@@ -47,7 +54,7 @@ export function createUnivaPlugins(config: UnivaConfig = { root: false }): Plugi
     plugins.push(VitePluginUniComponents({
       dts: `${univaDir}/components.d.ts`,
       ...componentsOptions,
-    }) as any)
+    }))
   }
 
   plugins.push(...Uni())
@@ -59,7 +66,7 @@ export function createUnivaPlugins(config: UnivaConfig = { root: false }): Plugi
       imports: ['vue'],
       dts: `${univaDir}/auto-imports.d.ts`,
       ...autoImportOptions,
-    })
+    }) as any
     if (Array.isArray(autoImportPlugin)) {
       plugins.push(...autoImportPlugin)
     }
@@ -70,18 +77,22 @@ export function createUnivaPlugins(config: UnivaConfig = { root: false }): Plugi
   return plugins
 }
 
-export async function Univa(userConfig: UnivaConfig = {}): Promise<Plugin[]> {
+/**
+ * Univa 插件入口函数
+ */
+export function Univa(userConfig: UnivaConfig = {}): PluginOption[] {
   context = new UnivaContext({
+    root: process.cwd(),
     config: userConfig,
   })
 
   ensureUnivaDir(context.root)
 
-  await context.loadUserConfig()
+  context.loadUserConfigSync()
 
-  console.log(context.config)
+  console.log('[univa] 插件已同步初始化')
 
-  return createUnivaPlugins(context.config)
+  return createUnivaPlugins(context.config) as PluginOption[]
 }
 
 export default Univa

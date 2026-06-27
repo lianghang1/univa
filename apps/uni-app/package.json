@@ -30,14 +30,14 @@
     "@dcloudio/uni-uts-v1": "3.0.0-4080720251210001",
     "@dcloudio/vite-plugin-uni": "3.0.0-5000520260324001",
     "@mini-types/alipay": "^3.0.14",
-    "@types/node": "^25.6.0",
+    "@types/node": "catalog:",
     "@uni-helper/plugin-uni": "0.1.0",
     "@univa/core": "workspace:*",
     "@vue/runtime-core": "3.4.21",
     "@vue/tsconfig": "^0.9.1",
     "miniprogram-api-typings": "^5.1.2",
-    "typescript": "5.9.3",
-    "vite": "5.2.8",
+    "typescript": "catalog:",
+    "vite": "catalog:",
     "vue-tsc": "^3.2.7"
   }
 }
