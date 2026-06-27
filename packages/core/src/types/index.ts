@@ -152,10 +152,7 @@ export interface UnivaOverrides {
  * 用于 univa.config.ts，声明项目工程结构、自动导入约定与应用级配置。
  */
 export interface UnivaOptions {
-  /** 项目根目录（index.html 所在位置），默认 process.cwd() */
-  rootDir?: string
-
-  /** 源码目录，相对 rootDir，默认 'src' */
+  /** 源码目录，相对 Vite root，默认 'src' */
   srcDir?: string
 
   /** 目录约定，相对 srcDir */
@@ -181,14 +178,12 @@ export interface UnivaOptions {
 /**
  * 解析后的完整配置（内部使用）
  *
- * 与 UnivaOptions 的差异：dirs/imports 为必填（已应用默认值），
- * 并额外提供 resolvedRootDir/resolvedSrcDir 绝对路径。
+ * 与 UnivaOptions 的差异：srcDir/dirs/imports 为必填（已应用默认值）。
+ * 所有路径保持相对 Vite root 的格式，由底层插件自行解析。
  */
-export interface ResolvedOptions extends Omit<UnivaOptions, 'dirs' | 'imports'> {
-  /** 解析后的绝对根目录 */
-  resolvedRootDir: string
-  /** 解析后的绝对源码目录 */
-  resolvedSrcDir: string
+export interface ResolvedOptions extends Omit<UnivaOptions, 'dirs' | 'imports' | 'srcDir'> {
+  /** 源码目录（已应用默认值，相对 Vite root） */
+  srcDir: string
   /** 目录约定（已应用默认值，字段必填） */
   dirs: ResolvedUnivaDirs
   /** 自动导入配置（已应用默认值，字段必填） */

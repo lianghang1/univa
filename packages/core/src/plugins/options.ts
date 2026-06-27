@@ -1,5 +1,4 @@
 import type { ResolvedOptions, UnivaOptions } from '../types'
-import { resolve } from 'node:path'
 import { mergeWithArrayOverride } from '../utils/merge'
 
 /**
@@ -25,14 +24,11 @@ const DEFAULT_IMPORTS = {
  *
  * 职责：
  * 1. 应用默认值（dirs/imports 等约定）
- * 2. 解析 rootDir/srcDir 为绝对路径
+ * 2. 保留 srcDir 相对路径（相对 Vite root），由底层插件自行解析
  * 3. 保留 overrides 原样（由 createUnivaPlugins 在装配时按模块合并）
  */
-export function resolveOptions(userOptions: UnivaOptions, cwd: string): ResolvedOptions {
-  const rootDir = userOptions.rootDir || cwd
-  const resolvedRootDir = resolve(rootDir)
+export function resolveOptions(userOptions: UnivaOptions): ResolvedOptions {
   const srcDir = userOptions.srcDir || 'src'
-  const resolvedSrcDir = resolve(resolvedRootDir, srcDir)
 
   const dirs = {
     pages: userOptions.dirs?.pages ?? DEFAULT_DIRS.pages,
@@ -45,17 +41,12 @@ export function resolveOptions(userOptions: UnivaOptions, cwd: string): Resolved
     components: userOptions.imports?.components ?? DEFAULT_IMPORTS.components,
   }
 
-  const resolved: ResolvedOptions = {
-    rootDir,
+  return {
     srcDir,
-    resolvedRootDir,
-    resolvedSrcDir,
     dirs,
     imports,
     overrides: userOptions.overrides,
   }
-
-  return resolved
 }
 
 /**

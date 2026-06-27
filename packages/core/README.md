@@ -361,10 +361,7 @@ export default defineConfig({
 import { defineConfig } from '@univa/core'
 
 export default defineConfig({
-  // 项目根目录，默认 process.cwd()
-  rootDir: '.',
-
-  // 源码目录，相对 rootDir，默认 'src'
+  // 源码目录，相对 Vite root，默认 'src'
   srcDir: 'src',
 
   // 目录约定

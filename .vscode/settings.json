@@ -111,7 +111,6 @@
     "CHANGELOG.md": "CHANGELOG*",
     "package.json": "pnpm-lock.yaml,pnpm-workspace.yaml,LICENSE,.gitattributes,.gitignore,.gitpod.yml,CNAME,.npmrc,.nvmrc,.browserslistrc,.versionrc,jsconfig.json,.git-cz.json",
     "eslint.config.*": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*,.eslintrc-auto-import.json,.eslint-global-variables.json,.editorconfig,.commitlint.*,commitlint.config.*",
-    "auto-imports.d.ts": "components.d.ts,uni-pages.d.ts,typed-router.d.ts",
     "vite.config.*": "uno.config.*,manifest.config.*,pages.config.*",
     "electron.vite.config.*": "uno.config.*,manifest.config.*,pages.config.*",
     "tsconfig.json": "jsconfig.json, tsconfig.node.json, tsconfig.web.json, tsconfig.base.json"
