@@ -7,7 +7,7 @@ export default defineConfig({
   // 应用级配置（pages.json 内容，自动生成 .univa/pages.ts）
   pages: {
     globalStyle: {
-      navigationBarTitleText: 'Univa9999',
+      navigationBarTitleText: 'Univa',
     },
   },
 })

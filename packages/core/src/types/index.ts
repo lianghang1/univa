@@ -155,6 +155,9 @@ export interface UnivaOptions {
   /** 源码目录，相对 Vite root，默认 'src' */
   srcDir?: string
 
+  /** 开启调试日志，默认 false */
+  debug?: boolean
+
   /** 目录约定，相对 srcDir */
   dirs?: UnivaDirs
 

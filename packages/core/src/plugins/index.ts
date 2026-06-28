@@ -9,6 +9,7 @@ import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { UNIVA_DIR_NAME } from '../constant'
 import { ensureUnivaDir } from '../utils/fs'
+import { log, setDebug } from '../utils/logger'
 import { UnivaContext } from './context'
 import { resolveOptions } from './options'
 import { createPagesPlugin } from './pages'
@@ -155,10 +156,12 @@ export function Univa(): PluginOption[] {
   ensureUnivaDir(context.root)
 
   context.loadUserConfigSync()
+  setDebug(context.config?.debug ?? false)
+  context.ensureRootComponent()
 
   const resolved = resolveOptions(context.config || {})
 
-  console.log('[univa] 已加载配置：', context.configPath || '默认配置')
+  log('已加载配置：', context.configPath || '默认配置')
 
   return createUnivaPlugins(resolved) as PluginOption[]
 }
