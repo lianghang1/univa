@@ -1,5 +1,5 @@
 <script setup>
-
+const xd = ref('')
 </script>
 
 <template>

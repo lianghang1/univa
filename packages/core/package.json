@@ -29,8 +29,15 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./client": {
-      "types": "./src/client.d.ts"
+    "./use": {
+      "import": {
+        "types": "./dist/use.d.ts",
+        "default": "./dist/use.js"
+      },
+      "require": {
+        "types": "./dist/use.d.cts",
+        "default": "./dist/use.cjs"
+      }
     }
   },
   "main": "./dist/index.cjs",
@@ -39,9 +46,7 @@
   "files": [
     "LICENSE",
     "README.md",
-    "dist",
-    "src/client.d.ts",
-    "src/global.d.ts"
+    "dist"
   ],
   "engines": {
     "node": ">=20.0.0"

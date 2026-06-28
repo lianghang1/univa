@@ -40,6 +40,6 @@
   },
   "includes": [
     "src/**/*.ts",
-    "src/**/*.tsx"
+    ".univa/**/*"
   ]
 }

@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: ['src/index.ts', 'src/use.ts'],
   format: ['esm', 'cjs'],
   dts: true,
   clean: true,
@@ -10,6 +10,7 @@ export default defineConfig({
     'fs',
     'fs/promises',
     'path',
+    'vue',
     'vite',
     'c12',
     'jiti',
