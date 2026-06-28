@@ -7,7 +7,7 @@ import { VitePluginUniLayouts } from '@uni-helper/vite-plugin-uni-layouts'
 import UniKuRoot from '@uni-ku/root'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import { UNIVA_DIR_NAME } from '../constant'
+import { ROOT_NAME, UNIVA_DIR_NAME } from '../constant'
 import { ensureUnivaDir } from '../utils/fs'
 import { log, setDebug } from '../utils/logger'
 import { UnivaContext } from './context'
@@ -99,7 +99,9 @@ export function createUnivaPlugins(resolved: ResolvedOptions): PluginOption[] {
   }))
 
   plugins.push(UniKuRoot({
+    enabledVirtualHost: true,
     enabledGlobalRef: true,
+    rootFileName: ROOT_NAME,
     excludePages: [
       'components-async/**/*.*',
     ],
@@ -157,7 +159,7 @@ export function Univa(): PluginOption[] {
 
   context.loadUserConfigSync()
   setDebug(context.config?.debug ?? false)
-  context.ensureRootComponent()
+  context.ensureRootComponent(`${ROOT_NAME}.vue`)
 
   const resolved = resolveOptions(context.config || {})
 
