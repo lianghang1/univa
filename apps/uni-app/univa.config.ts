@@ -1,6 +1,7 @@
 import { defineConfig } from '@univa/core'
 
 export default defineConfig({
+  debug: true,
   dirs: {
     subPackages: ['pages-sub/demo'],
   },
@@ -9,5 +10,8 @@ export default defineConfig({
     globalStyle: {
       navigationBarTitleText: 'Univa',
     },
+  },
+  manifest: {
+    name: 'univa-app',
   },
 })

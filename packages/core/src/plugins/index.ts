@@ -11,6 +11,7 @@ import { ROOT_NAME, UNIVA_DIR_NAME } from '../constant'
 import { ensureUnivaDir } from '../utils/fs'
 import { log, setDebug } from '../utils/logger'
 import { UnivaContext } from './context'
+import { createManifestPlugin } from './manifest'
 import { resolveOptions } from './options'
 import { createPagesPlugin } from './pages'
 
@@ -114,6 +115,10 @@ export function createUnivaPlugins(resolved: ResolvedOptions): PluginOption[] {
     globalNamespaces: ['components', 'common'],
     directoryAsNamespace: true,
     ...resolved.overrides?.components,
+  }))
+
+  plugins.push(createManifestPlugin({
+    ...resolved.overrides?.manifest,
   }))
 
   // uni-app 核心，必需

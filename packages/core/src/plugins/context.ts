@@ -8,6 +8,7 @@ import { createJiti } from 'jiti'
 import { ID } from '../constant'
 import { log } from '../utils/logger'
 import { mergeWithArrayOverride } from '../utils/merge'
+import { generateManifestConfigFile } from './manifest'
 import { generatePagesConfigFile, getPagesConfigPath } from './pages'
 
 /** 虚拟根组件最小模板 */
@@ -146,6 +147,11 @@ export class UnivaContext {
     const pagesConfig = this.config?.pages
     if (pagesConfig) {
       generatePagesConfigFile(pagesConfig, this.root)
+    }
+
+    const manifestConfig = this.config?.manifest
+    if (manifestConfig) {
+      generateManifestConfigFile(manifestConfig, this.root)
     }
 
     // 若 pages 字段不存在，确保 .univa/pages-config.ts 至少存在空配置

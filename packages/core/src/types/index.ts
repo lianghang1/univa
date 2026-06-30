@@ -9,8 +9,10 @@
 import type { PagesConfig } from '@uni-helper/uni-pages-types'
 // 导入底层插件选项类型（当前文件引用 + 重导出）
 import type { Options as ComponentsOptions } from '@uni-helper/vite-plugin-uni-components'
+import type { UserManifestConfig } from '@uni-helper/vite-plugin-uni-manifest'
 import type { UserOptions as PagesPluginOptions } from '@uni-helper/vite-plugin-uni-pages'
 import type { Options as AutoImportOptions } from 'unplugin-auto-import/types'
+import type { UserManifestOptions } from '../plugins/manifest'
 
 // 重导出 pages.json 内容相关类型
 export type {
@@ -144,6 +146,8 @@ export interface UnivaOverrides {
   autoImport?: AutoImportOptions
   /** unocss/vite 完整选项 */
   unocss?: UnoCSSOptions
+  /** @uni-helper/vite-plugin-uni-manifest 完整选项 */
+  manifest?: UserManifestOptions
 }
 
 /**
@@ -173,6 +177,9 @@ export interface UnivaOptions {
    * 注意：pages / subPackages 由目录扫描自动填充，请勿在此手写。
    */
   pages?: Partial<PagesConfig>
+
+  /** 应用级 manifest.json 配置 */
+  manifest?: Partial<UserManifestConfig>
 
   /** 底层插件逃生口（覆盖融合层默认，高级用户使用） */
   overrides?: UnivaOverrides
