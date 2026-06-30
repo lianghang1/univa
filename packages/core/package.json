@@ -1,7 +1,7 @@
 {
   "name": "@univa/core",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "🚀 开箱即用的 uni-app Vite 插件集，提供完整的开发体验",
   "author": "lianghang <libre1103@163.com>",
   "license": "MIT",
@@ -67,6 +67,7 @@
   },
   "dependencies": {
     "@antfu/utils": "catalog:",
+    "@dcloudio/types": "3.4.28",
     "@uni-helper/eslint-config": "0.7.4",
     "@uni-helper/plugin-uni": "0.1.0",
     "@uni-helper/uni-pages-types": "0.4.6",

@@ -7,11 +7,7 @@
       ]
     },
     "types": [
-      "vite/client",
-      "@dcloudio/types",
-      "@mini-types/alipay",
-      "miniprogram-api-typings",
-      "@uni-helper/uni-types",
+      "@univa/core/global",
       "@wot-ui/ui/global.d.ts"
     ]
   },
@@ -22,6 +18,8 @@
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
     "src/**/*.d.ts",
     ".univa/**/*.d.ts"
   ]
