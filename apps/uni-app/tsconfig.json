@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true,
     "target": "ESNext",
     "jsx": "preserve",
     "jsxImportSource": "vue",
@@ -38,8 +39,9 @@
       "@uni-helper/uni-types/volar-plugin"
     ]
   },
-  "includes": [
+  "include": [
     "src/**/*.ts",
-    ".univa/**/*"
+    "src/**/*.d.ts",
+    ".univa/**/*.d.ts"
   ]
 }

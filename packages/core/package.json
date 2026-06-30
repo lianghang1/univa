@@ -84,6 +84,7 @@
   },
   "devDependencies": {
     "@dcloudio/uni-app": "catalog:",
+    "@types/node": "catalog:",
     "tsup": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
