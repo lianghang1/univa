@@ -1,24 +1,11 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
-    "target": "ESNext",
-    "jsx": "preserve",
-    "jsxImportSource": "vue",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "useDefineForClassFields": true,
-    "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
     "paths": {
       "@/*": [
         "./src/*"
       ]
     },
-    "resolveJsonModule": true,
     "types": [
       "vite/client",
       "@dcloudio/types",
@@ -26,13 +13,7 @@
       "miniprogram-api-typings",
       "@uni-helper/uni-types",
       "@wot-ui/ui/global.d.ts"
-    ],
-    "strict": true,
-    "noImplicitThis": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true
+    ]
   },
   "vueCompilerOptions": {
     "plugins": [

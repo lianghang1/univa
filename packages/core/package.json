@@ -38,6 +38,9 @@
         "types": "./dist/use.d.cts",
         "default": "./dist/use.cjs"
       }
+    },
+    "./global": {
+      "types": "./dist/global.d.ts"
     }
   },
   "main": "./dist/index.cjs",
@@ -56,8 +59,11 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "node scripts/build.mjs",
     "dev": "tsup --watch"
+  },
+  "peerDependencies": {
+    "vite": "^5.2.8"
   },
   "dependencies": {
     "@antfu/utils": "catalog:",

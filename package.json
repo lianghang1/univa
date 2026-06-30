@@ -14,14 +14,12 @@
     "@antfu/eslint-config": "catalog:",
     "@commitlint/cli": "20.5.0",
     "@commitlint/config-conventional": "20.5.0",
-    "@types/node": "catalog:",
     "eslint": "catalog:",
     "esno": "4.8.0",
     "husky": "9.1.7",
     "inquirer": "12.9.3",
     "lint-staged": "16.4.0",
-    "standard-version": "9.5.0",
-    "typescript": "catalog:"
+    "standard-version": "9.5.0"
   },
   "lint-staged": {
     "*": "eslint --fix"
