@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+// import Uni from '@uni-helper/plugin-uni'
 import { Univa } from '@univa/core'
 import { defineConfig } from 'vite'
 
@@ -9,6 +10,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    // Uni(),
     ...Univa(),
   ],
 })

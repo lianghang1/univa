@@ -1,0 +1,216 @@
+# Third-Party Notices
+
+This file contains acknowledgments for third-party software used in the Univa project.
+
+---
+
+## Vite
+
+- **License**: MIT
+- **Repository**: https://github.com/vitejs/vite
+- **Copyright**: Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors
+
+---
+
+## UnoCSS
+
+- **License**: MIT
+- **Repository**: https://github.com/unocss/unocss
+- **Copyright**: Copyright (c) 2021-PRESENT Anthony Fu
+
+---
+
+## uni-helper
+
+### @uni-helper/plugin-uni
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/plugin-uni
+
+### @uni-helper/vite-plugin-uni-pages
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/vite-plugin-uni-pages
+
+### @uni-helper/vite-plugin-uni-components
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/vite-plugin-uni-components
+
+### @uni-helper/vite-plugin-uni-layouts
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/vite-plugin-uni-layouts
+
+### @uni-helper/vite-plugin-uni-manifest
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/vite-plugin-uni-manifest
+
+### @uni-helper/unocss-preset-uni
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/unocss-preset-uni
+
+### @uni-helper/uni-types
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/uni-types
+
+### @uni-helper/uni-pages-types
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/uni-pages-types
+
+### @uni-helper/eslint-config
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/eslint-config
+
+---
+
+## unplugin-auto-import
+
+- **License**: MIT
+- **Repository**: https://github.com/unjs/unplugin-auto-import
+- **Copyright**: Copyright (c) 2021-PRESENT Anthony Fu
+
+---
+
+## @antfu/utils
+
+- **License**: MIT
+- **Repository**: https://github.com/antfu/utils
+- **Copyright**: Copyright (c) 2021-PRESENT Anthony Fu
+
+---
+
+## @antfu/eslint-config
+
+- **License**: MIT
+- **Repository**: https://github.com/antfu/eslint-config
+- **Copyright**: Copyright (c) 2019-PRESENT Anthony Fu
+
+---
+
+## Sass
+
+- **License**: MIT
+- **Repository**: https://github.com/sass/dart-sass
+- **Copyright**: Copyright (c) 2016 Google Inc.
+
+---
+
+## c12
+
+- **License**: MIT
+- **Repository**: https://github.com/unjs/c12
+- **Copyright**: Copyright (c) Pooya Parsa
+
+---
+
+## defu
+
+- **License**: MIT
+- **Repository**: https://github.com/unjs/defu
+- **Copyright**: Copyright (c) Pooya Parsa
+
+---
+
+## jiti
+
+- **License**: MIT
+- **Repository**: https://github.com/unjs/jiti
+- **Copyright**: Copyright (c) Pooya Parsa
+
+---
+
+## @dcloudio/types
+
+- **License**: Apache-2.0
+- **Repository**: https://github.com/dcloudio/uni-app
+
+---
+
+## @uni-ku/root
+
+- **License**: MIT
+- **Repository**: https://github.com/uni-ku/root
+
+---
+
+## vite-plugin-uni-polyfill
+
+- **License**: MIT
+- **Repository**: https://github.com/uni-helper/vite-plugin-uni-polyfill
+
+---
+
+## husky
+
+- **License**: MIT
+- **Repository**: https://github.com/typicode/husky
+- **Copyright**: Copyright (c) 2016-2023 Typicode
+
+---
+
+## lint-staged
+
+- **License**: MIT
+- **Repository**: https://github.com/lint-staged/lint-staged
+- **Copyright**: Copyright (c) 2011-2023 Andrey Okonetchnikov
+
+---
+
+## commitlint
+
+- **License**: MIT
+- **Repository**: https://github.com/conventional-changelog/commitlint
+- **Copyright**: Copyright (c) 2016-2023 by Mario Nebl and contributors
+
+---
+
+## standard-version
+
+- **License**: ISC
+- **Repository**: https://github.com/conventional-changelog/standard-version
+- **Copyright**: Copyright (c) 2017-2019, Mario Nebl and contributors
+
+---
+
+## ESLint
+
+- **License**: MIT
+- **Repository**: https://github.com/eslint/eslint
+- **Copyright**: Copyright OpenJS Foundation and other contributors
+
+---
+
+## inquirer
+
+- **License**: MIT
+- **Repository**: https://github.com/SBoudrias/Inquirer.js
+- **Copyright**: Copyright (c) 2016 Simon Boudrias
+
+---
+
+## TypeScript
+
+- **License**: Apache-2.0
+- **Repository**: https://github.com/microsoft/TypeScript
+- **Copyright**: Copyright (c) Microsoft Corporation
+
+---
+
+## tsup
+
+- **License**: MIT
+- **Repository**: https://github.com/egoist/tsup
+- **Copyright**: Copyright (c) 2018 EGOIST
+
+---
+
+## Vue
+
+- **License**: MIT
+- **Repository**: https://github.com/vuejs/core
+- **Copyright**: Copyright (c) 2018-present, Yuxi (Evan) You
+
+---
+
+## Acknowledgments
+
+This project stands on the shoulders of giants. We are grateful to all the open-source contributors who have made these amazing tools available to the community.
+
+If you believe any attribution is missing or incorrect, please submit an issue or pull request.
