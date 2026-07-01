@@ -16,7 +16,7 @@ const DEFAULT_DIRS = {
 /**
  * 默认分包根目录名称
  */
-const DEFAULT_SUB_PACKAGE_ROOT = 'psx'
+const DEFAULT_SUB_PACKAGE_ROOT = 'app'
 
 /**
  * 默认自动导入源
