@@ -12,7 +12,7 @@ import type { UserUniPresetOptions } from '@uni-helper/unocss-preset-uni'
 import type { Options as ComponentsOptions } from '@uni-helper/vite-plugin-uni-components'
 import type { UserManifestConfig } from '@uni-helper/vite-plugin-uni-manifest'
 import type { PageContext, UserOptions as PagesPluginOptions } from '@uni-helper/vite-plugin-uni-pages'
-import type { OptimizationOptions } from '@uni-ku/bundle-optimizer'
+import type { IOptions as OptimizerOptions } from '@uni-ku/bundle-optimizer'
 import type { ConfigBase as UnoCSSConfigBase } from 'unocss'
 import type { Options as AutoImportOptions } from 'unplugin-auto-import/types'
 import type { UserManifestOptions } from '../plugins/manifest'
@@ -163,7 +163,7 @@ export interface UnivaOverrides {
   /** @uni-helper/vite-plugin-uni-manifest 完整选项 */
   manifest?: UserManifestOptions
   /** @uni-ku/bundle-optimizer 完整选项 */
-  optimization?: OptimizationOptions
+  optimization?: OptimizerOptions
 }
 
 /**
