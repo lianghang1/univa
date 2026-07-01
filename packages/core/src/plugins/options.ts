@@ -1,5 +1,6 @@
 import type { ResolvedOptions, UnivaOptions } from '../types'
 import { resolve } from 'node:path'
+import { COMPONENTS_ASYNC_DIR_NAME, SUB_PACKAGE_DIR_NAME } from '../constant'
 import { scanSubPackages } from '../utils/fs'
 import { log } from '../utils/logger'
 import { mergeWithArrayOverride } from '../utils/merge'
@@ -14,17 +15,12 @@ const DEFAULT_DIRS = {
 }
 
 /**
- * 默认分包根目录名称
- */
-const DEFAULT_SUB_PACKAGE_ROOT = 'app'
-
-/**
  * 默认自动导入源
  * apis: 预设名（vue/uni-app）+ 目录 glob，由 resolveApiSources 自动区分
  */
 const DEFAULT_IMPORTS = {
-  apis: ['vue', 'uni-app', 'composables/**', 'stores/**', 'hooks/**', 'constants/**'],
-  components: ['components/**', 'components-biz/**'],
+  apis: ['vue', 'uni-app', 'composables/**', 'store/**', 'hooks/**', 'constants/**'],
+  components: ['components', 'components-biz'],
 }
 
 /**
@@ -38,14 +34,14 @@ const DEFAULT_IMPORTS = {
 export function resolveOptions(userOptions: UnivaOptions, root: string): ResolvedOptions {
   const srcDir = userOptions.srcDir || 'src'
 
-  // 分包目录处理逻辑：
-  // 1. 自动扫描 pages-sub/ 下第一层目录
-  // 2. 追加到用户配置的 subPackages 数组中
   const srcDirAbs = resolve(root, srcDir)
-  const autoScanPackages = scanSubPackages(srcDirAbs, DEFAULT_SUB_PACKAGE_ROOT)
+
+  const autoScanPackages = scanSubPackages(srcDirAbs, SUB_PACKAGE_DIR_NAME)
+  const autoScanCompAsyncPackages = scanSubPackages(srcDirAbs, COMPONENTS_ASYNC_DIR_NAME)
+
   const userSubPackages = userOptions.dirs?.subPackages ?? []
-  const subPackages = [...userSubPackages, ...autoScanPackages]
-  log(`autoScanPackages: ${JSON.stringify({ srcDirAbs, autoScanPackages })}`)
+  const subPackages = [...userSubPackages, ...autoScanPackages, ...autoScanCompAsyncPackages]
+  log(`autoScanPackages: ${JSON.stringify({ subPackages })}`)
 
   const dirs = {
     pages: userOptions.dirs?.pages ?? DEFAULT_DIRS.pages,

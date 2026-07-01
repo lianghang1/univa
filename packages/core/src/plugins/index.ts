@@ -7,7 +7,7 @@ import { VitePluginUniLayouts } from '@uni-helper/vite-plugin-uni-layouts'
 import UniKuRoot from '@uni-ku/root'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import { ROOT_NAME, UNIVA_DIR_NAME } from '../constant'
+import { COMPONENTS_ASYNC_DIR_NAME, ROOT_NAME, UNIVA_DIR_NAME } from '../constant'
 import { ensureUnivaDir } from '../utils/fs'
 import { log, setDebug } from '../utils/logger'
 import { UnivaContext } from './context'
@@ -104,7 +104,7 @@ export function createUnivaPlugins(resolved: ResolvedOptions): PluginOption[] {
     enabledGlobalRef: true,
     rootFileName: ROOT_NAME,
     excludePages: [
-      'components-async/**/*.*',
+      `${COMPONENTS_ASYNC_DIR_NAME}/**/*.*`,
     ],
     ...resolved.overrides?.root,
   }))

@@ -10,7 +10,7 @@ import type { PagesConfig } from '@uni-helper/uni-pages-types'
 // 导入底层插件选项类型（当前文件引用 + 重导出）
 import type { Options as ComponentsOptions } from '@uni-helper/vite-plugin-uni-components'
 import type { UserManifestConfig } from '@uni-helper/vite-plugin-uni-manifest'
-import type { UserOptions as PagesPluginOptions } from '@uni-helper/vite-plugin-uni-pages'
+import type { PageContext, UserOptions as PagesPluginOptions } from '@uni-helper/vite-plugin-uni-pages'
 import type { Options as AutoImportOptions } from 'unplugin-auto-import/types'
 import type { UserManifestOptions } from '../plugins/manifest'
 
@@ -27,7 +27,7 @@ export type {
 } from '@uni-helper/uni-pages-types'
 
 // 重导出底层插件选项类型（用于 overrides 逃生口）
-export type { AutoImportOptions, ComponentsOptions, PagesPluginOptions }
+export type { AutoImportOptions, ComponentsOptions, PageContext, PagesPluginOptions }
 
 // 重导出工具类型
 export type {
