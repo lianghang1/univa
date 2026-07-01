@@ -6,7 +6,6 @@ import VitePluginUniComponents from '@uni-helper/vite-plugin-uni-components'
 import { VitePluginUniLayouts } from '@uni-helper/vite-plugin-uni-layouts'
 import Optimization from '@uni-ku/bundle-optimizer'
 import UniKuRoot from '@uni-ku/root'
-import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { COMPONENTS_ASYNC_DIR_NAME, ROOT_NAME, UNIVA_DIR_NAME } from '../constant'
 import { ensureUnivaDir } from '../utils/fs'
@@ -15,6 +14,7 @@ import { UnivaContext } from './context'
 import { createManifestPlugin } from './manifest'
 import { resolveOptions } from './options'
 import { createPagesPlugin } from './pages'
+import { createUnocssPlugin } from './unocss'
 
 let context: UnivaContext
 
@@ -124,7 +124,7 @@ export function createUnivaPlugins(resolved: ResolvedOptions): PluginOption[] {
 
   // uni-app 核心，必需
   plugins.push(...Uni())
-  plugins.push(...UnoCSS())
+  plugins.push(createUnocssPlugin(resolved.unocss, resolved.overrides?.unocss))
 
   plugins.push(Optimization({
     enable: true,

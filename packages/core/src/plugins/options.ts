@@ -23,6 +23,10 @@ const DEFAULT_IMPORTS = {
   components: ['components', 'components-biz'],
 }
 
+const DEFAULT_UNI_PRESET = {
+  attributify: false,
+}
+
 /**
  * 解析用户配置为完整配置
  *
@@ -54,9 +58,17 @@ export function resolveOptions(userOptions: UnivaOptions, root: string): Resolve
     components: userOptions.imports?.components ?? DEFAULT_IMPORTS.components,
   }
 
+  const unocss = {
+    presetLegacyCompat: userOptions.unocss?.presetLegacyCompat ?? true,
+    uniPreset: userOptions.unocss?.uniPreset ?? DEFAULT_UNI_PRESET,
+    safelist: userOptions.unocss?.safelist ?? [],
+    themeColors: userOptions.unocss?.themeColors ?? {},
+  }
+
   return {
     srcDir,
     dirs,
+    unocss,
     imports,
     overrides: userOptions.overrides,
   }

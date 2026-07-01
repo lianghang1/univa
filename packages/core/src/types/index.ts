@@ -7,11 +7,13 @@
  */
 
 import type { PagesConfig } from '@uni-helper/uni-pages-types'
+import type { UserUniPresetOptions } from '@uni-helper/unocss-preset-uni'
 // 导入底层插件选项类型（当前文件引用 + 重导出）
 import type { Options as ComponentsOptions } from '@uni-helper/vite-plugin-uni-components'
 import type { UserManifestConfig } from '@uni-helper/vite-plugin-uni-manifest'
 import type { PageContext, UserOptions as PagesPluginOptions } from '@uni-helper/vite-plugin-uni-pages'
 import type { OptimizationOptions } from '@uni-ku/bundle-optimizer'
+import type { ConfigBase as UnoCSSConfigBase } from 'unocss'
 import type { Options as AutoImportOptions } from 'unplugin-auto-import/types'
 import type { UserManifestOptions } from '../plugins/manifest'
 
@@ -28,7 +30,7 @@ export type {
 } from '@uni-helper/uni-pages-types'
 
 // 重导出底层插件选项类型（用于 overrides 逃生口）
-export type { AutoImportOptions, ComponentsOptions, PageContext, PagesPluginOptions }
+export type { AutoImportOptions, ComponentsOptions, PageContext, PagesPluginOptions, UnoCSSConfigBase, UserUniPresetOptions }
 
 // 重导出工具类型
 export type {
@@ -55,6 +57,14 @@ export interface UnivaDirs {
   subPackages?: string[]
   /** 布局目录，默认 'layouts' */
   layouts?: string
+}
+
+export interface UnivaUnocss {
+  /** 是否开启兼容模式，默认 false */
+  presetLegacyCompat?: boolean
+  uniPreset?: UserUniPresetOptions
+  safelist?: string[]
+  themeColors?: Record<string, string>
 }
 
 /**
@@ -92,6 +102,13 @@ export interface ResolvedUnivaDirs {
   layouts: string
 }
 
+export interface ResolvedUnivaUnocss {
+  presetLegacyCompat: boolean
+  uniPreset: UserUniPresetOptions
+  safelist: string[]
+  themeColors: Record<string, string>
+}
+
 /**
  * 解析后的自动导入配置（字段必填，已应用默认值）
  */
@@ -122,11 +139,7 @@ export interface RootOptions {
 /**
  * UnoCSS 模块底层选项（用于 overrides）
  */
-export interface UnoCSSOptions {
-  presets?: unknown[]
-  rules?: unknown[]
-  shortcuts?: Record<string, string | string[]>
-}
+export interface UnoCSSOptions extends UnoCSSConfigBase {}
 
 /**
  * 底层插件逃生口
@@ -184,6 +197,8 @@ export interface UnivaOptions {
   /** 应用级 manifest.json 配置 */
   manifest?: Partial<UserManifestConfig>
 
+  unocss?: UnivaUnocss
+
   /** 底层插件逃生口（覆盖融合层默认，高级用户使用） */
   overrides?: UnivaOverrides
 }
@@ -201,4 +216,5 @@ export interface ResolvedOptions extends Omit<UnivaOptions, 'dirs' | 'imports' |
   dirs: ResolvedUnivaDirs
   /** 自动导入配置（已应用默认值，字段必填） */
   imports: ResolvedUnivaImports
+  unocss: ResolvedUnivaUnocss
 }
