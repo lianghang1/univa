@@ -21,6 +21,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.d.ts",
-    ".univa/**/*.d.ts"
+    ".univa/**/*.d.ts",
+    "vite.config.ts",
+    "univa.config.ts"
   ]
 }

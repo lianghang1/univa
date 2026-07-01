@@ -166,7 +166,7 @@ export function Univa(): PluginOption[] {
   setDebug(context.config?.debug ?? false)
   context.ensureRootComponent(`${ROOT_NAME}.vue`)
 
-  const resolved = resolveOptions(context.config || {})
+  const resolved = resolveOptions(context.config || {}, context.root)
 
   log('已加载配置：', context.configPath || '默认配置')
 

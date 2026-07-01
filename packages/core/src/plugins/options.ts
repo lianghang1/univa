@@ -1,4 +1,7 @@
 import type { ResolvedOptions, UnivaOptions } from '../types'
+import { resolve } from 'node:path'
+import { scanSubPackages } from '../utils/fs'
+import { log } from '../utils/logger'
 import { mergeWithArrayOverride } from '../utils/merge'
 
 /**
@@ -6,9 +9,14 @@ import { mergeWithArrayOverride } from '../utils/merge'
  */
 const DEFAULT_DIRS = {
   pages: 'pages',
-  subPackages: ['pages-sub/*'],
+  subPackages: [] as string[],
   layouts: 'layouts',
 }
+
+/**
+ * 默认分包根目录名称
+ */
+const DEFAULT_SUB_PACKAGE_ROOT = 'psx'
 
 /**
  * 默认自动导入源
@@ -27,12 +35,21 @@ const DEFAULT_IMPORTS = {
  * 2. 保留 srcDir 相对路径（相对 Vite root），由底层插件自行解析
  * 3. 保留 overrides 原样（由 createUnivaPlugins 在装配时按模块合并）
  */
-export function resolveOptions(userOptions: UnivaOptions): ResolvedOptions {
+export function resolveOptions(userOptions: UnivaOptions, root: string): ResolvedOptions {
   const srcDir = userOptions.srcDir || 'src'
+
+  // 分包目录处理逻辑：
+  // 1. 自动扫描 pages-sub/ 下第一层目录
+  // 2. 追加到用户配置的 subPackages 数组中
+  const srcDirAbs = resolve(root, srcDir)
+  const autoScanPackages = scanSubPackages(srcDirAbs, DEFAULT_SUB_PACKAGE_ROOT)
+  const userSubPackages = userOptions.dirs?.subPackages ?? []
+  const subPackages = [...userSubPackages, ...autoScanPackages]
+  log(`autoScanPackages: ${JSON.stringify({ srcDirAbs, autoScanPackages })}`)
 
   const dirs = {
     pages: userOptions.dirs?.pages ?? DEFAULT_DIRS.pages,
-    subPackages: userOptions.dirs?.subPackages ?? DEFAULT_DIRS.subPackages,
+    subPackages,
     layouts: userOptions.dirs?.layouts ?? DEFAULT_DIRS.layouts,
   }
 

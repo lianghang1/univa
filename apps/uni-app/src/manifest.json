@@ -44,8 +44,11 @@
     }
   },
   "h5": {
-    "darkmode": true,
-    "themeLocation": "theme.json"
+    "darkmode": false,
+    "router": {
+      "mode": "history",
+      "base": "/"
+    }
   },
   "quickapp": {},
   "mp-weixin": {
