@@ -4,6 +4,7 @@ import type { ResolvedOptions } from '../types'
 import Uni from '@uni-helper/plugin-uni'
 import VitePluginUniComponents from '@uni-helper/vite-plugin-uni-components'
 import { VitePluginUniLayouts } from '@uni-helper/vite-plugin-uni-layouts'
+import Optimization from '@uni-ku/bundle-optimizer'
 import UniKuRoot from '@uni-ku/root'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -124,6 +125,12 @@ export function createUnivaPlugins(resolved: ResolvedOptions): PluginOption[] {
   // uni-app 核心，必需
   plugins.push(...Uni())
   plugins.push(...UnoCSS())
+
+  plugins.push(Optimization({
+    enable: true,
+    logger: resolved.debug,
+    ...resolved.overrides?.optimization,
+  }))
 
   const { presets, dirs } = resolveApiSources(resolved.imports.apis, srcDir)
   const autoImportPlugin = AutoImport({

@@ -11,6 +11,7 @@ import type { PagesConfig } from '@uni-helper/uni-pages-types'
 import type { Options as ComponentsOptions } from '@uni-helper/vite-plugin-uni-components'
 import type { UserManifestConfig } from '@uni-helper/vite-plugin-uni-manifest'
 import type { PageContext, UserOptions as PagesPluginOptions } from '@uni-helper/vite-plugin-uni-pages'
+import type { OptimizationOptions } from '@uni-ku/bundle-optimizer'
 import type { Options as AutoImportOptions } from 'unplugin-auto-import/types'
 import type { UserManifestOptions } from '../plugins/manifest'
 
@@ -148,6 +149,8 @@ export interface UnivaOverrides {
   unocss?: UnoCSSOptions
   /** @uni-helper/vite-plugin-uni-manifest 完整选项 */
   manifest?: UserManifestOptions
+  /** @uni-ku/bundle-optimizer 完整选项 */
+  optimization?: OptimizationOptions
 }
 
 /**

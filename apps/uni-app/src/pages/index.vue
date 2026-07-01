@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import DemoAsync from '@/components-async/Demo/index.vue'
+
+defineOptions({
+  componentPlaceholder: {
+    DemoAsync: 'view',
+  },
+})
 </script>
 
 <template>
@@ -6,6 +13,8 @@
     <AppLogos />
     <InputEntry />
     <AppFooter />
+    <BizDemo />
+    <DemoAsync />
   </view>
 </template>
 

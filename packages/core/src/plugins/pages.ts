@@ -4,7 +4,7 @@ import type { Plugin } from 'vite'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { VitePluginUniPages } from '@uni-helper/vite-plugin-uni-pages'
-import { UNIVA_DIR_NAME } from '../constant'
+import { COMPONENTS_ASYNC_DIR_NAME, UNIVA_DIR_NAME } from '../constant'
 import { getUnivaDir } from '../utils/fs'
 
 /**
@@ -97,6 +97,9 @@ export function normalizePageNames(pageContext: PageContext) {
 
   pageContext.subPageMetaData.forEach((subPage) => {
     subPage.pages.forEach((page) => {
+      if (subPage.root.startsWith(COMPONENTS_ASYNC_DIR_NAME)) {
+        page.layout = false
+      }
       if (page.name) {
         return
       }

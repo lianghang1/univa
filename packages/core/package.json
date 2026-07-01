@@ -78,6 +78,7 @@
     "@uni-helper/vite-plugin-uni-layouts": "0.1.11",
     "@uni-helper/vite-plugin-uni-manifest": "0.4.1",
     "@uni-helper/vite-plugin-uni-pages": "0.4.6",
+    "@uni-ku/bundle-optimizer": "2.2.0",
     "@uni-ku/root": "1.4.1",
     "@unocss/eslint-plugin": "66.6.7",
     "@unocss/preset-legacy-compat": "66.0.0",

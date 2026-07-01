@@ -8,11 +8,16 @@ export default defineConfig({
     },
   },
   manifest: {
-    name: 'univa-app',
-    h5: {
+    'name': 'univa-app',
+    'h5': {
       router: {
         mode: 'history',
         base: '/',
+      },
+    },
+    'mp-weixin': {
+      optimization: {
+        subPackages: true,
       },
     },
   },
