@@ -7,6 +7,7 @@ import { VitePluginUniLayouts } from '@uni-helper/vite-plugin-uni-layouts'
 import Optimization from '@uni-ku/bundle-optimizer'
 import UniKuRoot from '@uni-ku/root'
 import AutoImport from 'unplugin-auto-import/vite'
+import UniPolyfill from 'vite-plugin-uni-polyfill'
 import { COMPONENTS_ASYNC_DIR_NAME, ROOT_NAME, UNIVA_DIR_NAME } from '../constant'
 import { ensureUnivaDir } from '../utils/fs'
 import { log, setDebug } from '../utils/logger'
@@ -124,6 +125,7 @@ export function createUnivaPlugins(resolved: ResolvedOptions): PluginOption[] {
 
   // uni-app 核心，必需
   plugins.push(...Uni())
+  plugins.push(UniPolyfill())
   plugins.push(createUnocssPlugin(resolved.unocss, resolved.overrides?.unocss))
 
   plugins.push(Optimization({
