@@ -1,7 +1,7 @@
 {
   "name": "@univa/core",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "🚀 开箱即用的 uni-app Vite 插件集，提供完整的开发体验",
   "author": "lianghang <libre1103@163.com>",
   "license": "MIT",
