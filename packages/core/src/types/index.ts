@@ -6,7 +6,7 @@
  * - overrides 逃生口面向 10% 高级用户，可下沉到底层插件选项
  */
 
-import type { PagesConfig } from '@uni-helper/uni-pages-types'
+import type { PageMetaDatum, PagesConfig } from '@uni-helper/uni-pages-types'
 import type { UserUniPresetOptions } from '@uni-helper/unocss-preset-uni'
 // 导入底层插件选项类型（当前文件引用 + 重导出）
 import type { Options as ComponentsOptions } from '@uni-helper/vite-plugin-uni-components'
@@ -22,7 +22,6 @@ export type {
   Condition,
   EasyCom,
   GlobalStyle,
-  PageMetaDatum,
   PagesConfig,
   SubPackage,
   TabBar,
@@ -30,7 +29,7 @@ export type {
 } from '@uni-helper/uni-pages-types'
 
 // 重导出底层插件选项类型（用于 overrides 逃生口）
-export type { AutoImportOptions, ComponentsOptions, PageContext, PagesPluginOptions, UnoCSSConfigBase, UserUniPresetOptions }
+export type { AutoImportOptions, ComponentsOptions, PageContext, PageMetaDatum, PagesPluginOptions, UnoCSSConfigBase, UserUniPresetOptions }
 
 // 重导出工具类型
 export type {
@@ -184,6 +183,9 @@ export interface UnivaOptions {
   /** 自动导入配置 */
   imports?: UnivaImports
 
+  /** 首页配置 */
+  homePage?: PageMetaDatum
+
   /**
    * 应用级 pages.json 配置（globalStyle / tabBar 等）
    *
@@ -217,4 +219,6 @@ export interface ResolvedOptions extends Omit<UnivaOptions, 'dirs' | 'imports' |
   /** 自动导入配置（已应用默认值，字段必填） */
   imports: ResolvedUnivaImports
   unocss: ResolvedUnivaUnocss
+  homePage?: PageMetaDatum
+  srcDirAbs: string
 }

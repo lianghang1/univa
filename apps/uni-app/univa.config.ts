@@ -7,6 +7,9 @@ export default defineConfig({
       navigationBarTitleText: 'Univa2',
     },
   },
+  homePage: {
+    path: 'pages/index',
+  },
   manifest: {
     'name': 'univa-app',
     'h5': {

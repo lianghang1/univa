@@ -5,16 +5,15 @@ import Uni from '@uni-helper/plugin-uni'
 import VitePluginUniComponents from '@uni-helper/vite-plugin-uni-components'
 import { VitePluginUniLayouts } from '@uni-helper/vite-plugin-uni-layouts'
 import Optimization from '@uni-ku/bundle-optimizer'
-import UniKuRoot from '@uni-ku/root'
 import AutoImport from 'unplugin-auto-import/vite'
 import UniPolyfill from 'vite-plugin-uni-polyfill'
-import { COMPONENTS_ASYNC_DIR_NAME, ROOT_NAME, UNIVA_DIR_NAME } from '../constant'
+import { UNIVA_DIR_NAME } from '../constant'
 import { ensureUnivaDir } from '../utils/fs'
-import { log, setDebug } from '../utils/logger'
+import { setDebug } from '../utils/logger'
 import { UnivaContext } from './context'
 import { createManifestPlugin } from './manifest'
-import { resolveOptions } from './options'
 import { createPagesPlugin } from './pages'
+import { createRootPlugin } from './root'
 import { createUnocssPlugin } from './unocss'
 
 let context: UnivaContext
@@ -23,11 +22,6 @@ function createCorePlugin(): PluginOption {
   return {
     name: 'vite-plugin-univa',
     enforce: 'pre',
-
-    async configResolved() {
-      await context.loadUserConfigAsync()
-      context.updateGeneratedFiles()
-    },
 
     configureServer(server) {
       context.setupViteServer(server)
@@ -93,23 +87,16 @@ export function createUnivaPlugins(resolved: ResolvedOptions): PluginOption[] {
   plugins.push(...createPagesPlugin({
     dir: `${srcDir}/${resolved.dirs.pages}`,
     subPackages: resolved.dirs.subPackages.map(p => `${srcDir}/${p}`),
+    debug: resolved.debug,
     ...resolved.overrides?.pages,
-  }))
+  }, resolved))
 
   plugins.push(VitePluginUniLayouts({
     layoutDir: `${srcDir}/${resolved.dirs.layouts}`,
     ...resolved.overrides?.layouts,
   }))
 
-  plugins.push(UniKuRoot({
-    enabledVirtualHost: true,
-    enabledGlobalRef: true,
-    rootFileName: ROOT_NAME,
-    excludePages: [
-      `${COMPONENTS_ASYNC_DIR_NAME}/**/*.*`,
-    ],
-    ...resolved.overrides?.root,
-  }))
+  plugins.push(createRootPlugin(resolved))
 
   plugins.push(VitePluginUniComponents({
     dirs: resolved.imports.components.map(c => `${srcDir}/${c}`),
@@ -172,14 +159,12 @@ export function Univa(): PluginOption[] {
   ensureUnivaDir(context.root)
 
   context.loadUserConfigSync()
-  setDebug(context.config?.debug ?? false)
-  context.ensureRootComponent(`${ROOT_NAME}.vue`)
 
-  const resolved = resolveOptions(context.config || {}, context.root)
+  setDebug(context.resolveUserOptions!.debug ?? false)
 
-  log('已加载配置：', context.configPath || '默认配置')
+  context.updateGeneratedFiles()
 
-  return createUnivaPlugins(resolved) as PluginOption[]
+  return createUnivaPlugins(context.resolveUserOptions!) as PluginOption[]
 }
 
 export default Univa
