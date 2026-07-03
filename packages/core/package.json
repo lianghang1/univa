@@ -5,9 +5,14 @@
   "description": "🚀 开箱即用的 uni-app Vite 插件集，提供完整的开发体验",
   "author": "lianghang <libre1103@163.com>",
   "license": "MIT",
-  "homepage": "mailto:libre1103@163.com",
+  "homepage": "https://github.com/lianghang1/univa/tree/main/packages/core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lianghang1/univa.git",
+    "directory": "packages/core"
+  },
   "bugs": {
-    "url": "mailto:libre1103@163.com"
+    "url": "https://github.com/lianghang1/univa/issues"
   },
   "keywords": [
     "uni-app",
