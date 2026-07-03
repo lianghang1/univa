@@ -7,6 +7,16 @@ export default defineConfig({
       navigationBarTitleText: 'Univa2',
     },
   },
+  imports: {
+    apis: [
+      {
+        from: '@univa/core/use',
+        imports: [
+          'usePageContext',
+        ],
+      },
+    ],
+  },
   homePage: {
     path: 'pages/index',
   },

@@ -6,6 +6,18 @@ defineOptions({
     DemoAsync: 'view',
   },
 })
+
+const { onPageMounted, rootRef } = usePageContext()
+
+onPageMounted(() => {
+  console.log(12312)
+  rootRef.value?.showToast('sdfsdfsd')
+})
+
+// onMounted(() => {
+//   showToast('hello world')
+//   rootRef.value?.showToast('hello world2')
+// })
 </script>
 
 <template>

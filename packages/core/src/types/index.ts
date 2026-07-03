@@ -17,6 +17,11 @@ import type { ConfigBase as UnoCSSConfigBase } from 'unocss'
 import type { Options as AutoImportOptions } from 'unplugin-auto-import/types'
 import type { UserManifestOptions } from '../plugins/manifest'
 
+export * from './hooks'
+
+// 重导出底层插件选项类型（用于 overrides 逃生口）
+export type { AutoImportOptions, ComponentsOptions, PageContext, PageMetaDatum, PagesPluginOptions, UnoCSSConfigBase, UserUniPresetOptions }
+
 // 重导出 pages.json 内容相关类型
 export type {
   Condition,
@@ -28,9 +33,6 @@ export type {
   TabBarItem,
 } from '@uni-helper/uni-pages-types'
 
-// 重导出底层插件选项类型（用于 overrides 逃生口）
-export type { AutoImportOptions, ComponentsOptions, PageContext, PageMetaDatum, PagesPluginOptions, UnoCSSConfigBase, UserUniPresetOptions }
-
 // 重导出工具类型
 export type {
   ComponentInfo,
@@ -38,13 +40,6 @@ export type {
   ResolvedOptions as ComponentsResolvedOptions,
   ImportInfo,
 } from '@uni-helper/vite-plugin-uni-components'
-
-export type {
-  definePage,
-  PagePath,
-  ResolvedOptions as PagesResolvedOptions,
-  SubPageMetaDatum,
-} from '@uni-helper/vite-plugin-uni-pages'
 
 /**
  * 目录约定（相对 srcDir）
@@ -222,3 +217,10 @@ export interface ResolvedOptions extends Omit<UnivaOptions, 'dirs' | 'imports' |
   homePage?: PageMetaDatum
   srcDirAbs: string
 }
+
+export type {
+  definePage,
+  PagePath,
+  ResolvedOptions as PagesResolvedOptions,
+  SubPageMetaDatum,
+} from '@uni-helper/vite-plugin-uni-pages'
