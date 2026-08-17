@@ -91,13 +91,12 @@
     "defu": "6.1.7",
     "eslint": "catalog:",
     "jiti": "2.7.0",
-    "sass": "1.99.0",
     "unocss": "66.0.0",
     "unplugin-auto-import": "20.0.0",
     "vite-plugin-uni-polyfill": "0.1.0"
   },
   "devDependencies": {
-    "@dcloudio/uni-app": "3.0.0-4080720251210001",
+    "@dcloudio/uni-app": "^3.0.0-4080720251210001",
     "@types/node": "catalog:",
     "@vue/runtime-core": "catalog:",
     "tsup": "catalog:",
