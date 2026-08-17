@@ -91,10 +91,11 @@ export function usePageContext(): PageContext {
     const pageStack = pagesStack[pagesStack.length - 1]
 
     if (!pageStack?.$vm?.$refs?.uniKuRoot) {
-      throw new Error('[usePageContext] Root not found.')
+      console.warn('[usePageContext] Root not found，rootRef 保持为 null（页面可能被 root 插件排除，如 components-async 分包）')
     }
-
-    rootRef.value = pageStack.$vm.$refs.uniKuRoot
+    else {
+      rootRef.value = pageStack.$vm.$refs.uniKuRoot
+    }
 
     isMounted.value = true
     mountedCallbacks.forEach(cb => cb())

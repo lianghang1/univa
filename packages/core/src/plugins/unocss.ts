@@ -1,23 +1,24 @@
 import type { Preset } from 'unocss'
-import type { ResolvedUnivaUnocss, UnoCSSOptions } from '../types'
+import type { ResolvedOptions } from '../types'
 import { presetUni } from '@uni-helper/unocss-preset-uni'
 import presetLegacyCompat from '@unocss/preset-legacy-compat'
 import { presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss'
 import UnoCSS from 'unocss/vite'
-import { ID } from '../constant'
+import { UNIVA_ID } from '../constant'
 
-function presetUniva(userOptions: ResolvedUnivaUnocss): Preset {
+function presetUniva(resolved: ResolvedOptions): Preset {
+  const { unocss } = resolved
   const presets = []
-  if (userOptions.presetLegacyCompat) {
+  if (unocss.presetLegacyCompat) {
     presets.push(presetLegacyCompat({
       commaStyleColorFunction: true,
       legacyColorSpace: true,
     }))
   }
   return {
-    name: `${ID}-preset`,
+    name: `${UNIVA_ID}-preset`,
     presets: [
-      presetUni(userOptions.uniPreset),
+      presetUni(unocss.uniPreset),
       presetIcons({
         scale: 1.2,
         warn: true,
@@ -49,18 +50,21 @@ function presetUniva(userOptions: ResolvedUnivaUnocss): Preset {
       ['pt-safe', { 'padding-top': 'env(safe-area-inset-top)' }],
       ['pb-safe', { 'padding-bottom': 'env(safe-area-inset-bottom)' }],
     ],
-    safelist: userOptions.safelist,
+    safelist: unocss.safelist,
     theme: {
-      colors: userOptions.themeColors,
+      colors: unocss.themeColors,
     },
   }
 }
 
-export function createUnocssPlugin(univaOptions: ResolvedUnivaUnocss, unocssOptions: UnoCSSOptions = {}) {
+/**
+ * 创建 UnoCSS 模块插件
+ */
+export function createUnocssPlugin(resolved: ResolvedOptions) {
   return UnoCSS({
     presets: [
-      presetUniva(univaOptions),
+      presetUniva(resolved),
     ],
-    ...unocssOptions,
+    ...resolved.overrides.unocss,
   })
 }

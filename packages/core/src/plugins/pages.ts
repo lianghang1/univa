@@ -1,18 +1,19 @@
 import type { PagesConfig } from '@uni-helper/uni-pages-types'
-import type { PageContext, UserOptions as PagesPluginOptions } from '@uni-helper/vite-plugin-uni-pages'
+import type { PageContext } from '@uni-helper/vite-plugin-uni-pages'
 import type { Plugin } from 'vite'
-import type { ResolvedOptions } from '../types'
+import type { RegisterPluginHooks, ResolvedOptions } from '../types'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { VitePluginUniPages } from '@uni-helper/vite-plugin-uni-pages'
-import { COMPONENTS_ASYNC_DIR_NAME, PAGES_JSON_FILE_NAME, UNIVA_DIR_NAME } from '../constant'
+import { PAGES_JSON_FILE_NAME, UNIVA_DIR_NAME } from '../constant'
 import { getUnivaDir } from '../utils/fs'
 import { log } from '../utils/logger'
 
-/**
- * 获取 .univa/pages-config.ts 绝对路径（用于 fs 操作）
- */
-export function getPagesConfigPath(root: string): string {
+/* -------------------------------------------------------------------------- */
+/* 产物生成（模块自治）                                                        */
+/* -------------------------------------------------------------------------- */
+
+function getPagesConfigPath(root: string): string {
   return join(getUnivaDir(root), 'pages-config.ts')
 }
 
@@ -22,13 +23,10 @@ export function getPagesConfigPath(root: string): string {
  * 将 univa.config.ts 的 pages 字段（应用级配置）序列化为 TypeScript 模块，
  * 供 VitePluginUniPages 消费。
  *
- * pages/subPackages 字段由 VitePluginUniPages 扫描目录后自动填充，
- * 此处不写入，避免覆盖扫描结果。
+ * 注意：pages/subPackages 由 VitePluginUniPages 扫描目录后自动填充，
+ * 此处仅写入应用级配置（globalStyle/tabBar 等）与 homePage。
  */
 function generatePagesConfigContent(content: Partial<PagesConfig>): string {
-  // const { pages, subPackages, ...rest } = content
-  // void pages
-  // void subPackages
   return `/* eslint-disable */
 /* prettier-ignore */
 // @ts-nocheck
@@ -38,21 +36,22 @@ export default ${JSON.stringify(content, null, 2)}
 }
 
 /**
- * 生成 .univa/pages-config.ts 文件
+ * 同步 pages 配置产物
  *
- * 仅在内容变化时写入，避免触发不必要的 Vite 重编译。
- * root 用于 fs 操作的绝对路径解析。
+ * - 写 .univa/pages-config.ts（仅内容变化时写入，避免触发不必要的 Vite 重编译）
+ * - 初始化 src/pages.json（仅不存在时创建）
  */
-export function generatePagesConfigFile(content: Partial<PagesConfig>, root: string, config: ResolvedOptions): void {
-  const pagesConfigPath = getPagesConfigPath(root)
+function syncPagesConfig(resolved: ResolvedOptions): void {
+  const content = resolved.pages || []
+
+  // 写 pages-config.ts
+  const pagesConfigPath = getPagesConfigPath(resolved.root)
   const newContent = generatePagesConfigContent(content)
 
   let needWrite = true
   if (existsSync(pagesConfigPath)) {
     const existingContent = readFileSync(pagesConfigPath, 'utf-8')
     if (existingContent === newContent) {
-      log(`existingContent: ${existingContent}`)
-      log(`newContent: ${newContent}`)
       log(`Pages config file ${pagesConfigPath} is up-to-date`)
       needWrite = false
     }
@@ -63,41 +62,17 @@ export function generatePagesConfigFile(content: Partial<PagesConfig>, root: str
     log(`Generated pages config file: ${pagesConfigPath}`)
   }
 
-  const resolvedPagesJSONPath = join(config.srcDirAbs, PAGES_JSON_FILE_NAME)
-
-  log(`Generated pages JSON file: ${resolvedPagesJSONPath}`)
-
-  if (!existsSync(resolvedPagesJSONPath)) {
-    writeFileSync(resolvedPagesJSONPath, JSON.stringify(content, null, 2), 'utf-8')
-  }
-  else {
-    log(`Pages JSON file ${resolvedPagesJSONPath} is up-to-date`)
+  // 初始化 src/pages.json
+  const pagesJsonPath = join(resolved.srcDirAbs, PAGES_JSON_FILE_NAME)
+  if (!existsSync(pagesJsonPath)) {
+    writeFileSync(pagesJsonPath, JSON.stringify(content, null, 2), 'utf-8')
+    log(`Generated pages JSON file: ${pagesJsonPath}`)
   }
 }
 
-/**
- * 创建 Pages 模块插件
- *
- * 职责：
- * 1. 创建 VitePluginUniPages，configSource 指向 .univa/pages-config.ts
- * 2. dts 输出到 .univa 目录
- * 3. 高层约定（dirs.pages）已在外部拼接 srcDir 前缀后通过 pluginOptions 传入
- *
- * dts 与 configSource 均为相对 Vite root 的路径，由插件内部解析。
- */
-export function createPagesPlugin(pluginOptions: PagesPluginOptions, options: ResolvedOptions): Plugin[] {
-  const result = VitePluginUniPages({
-    dts: `${UNIVA_DIR_NAME}/uni-pages.d.ts`,
-    exclude: ['**/components/**/*.*'],
-    configSource: `${UNIVA_DIR_NAME}/pages-config.ts`,
-    onAfterMergePageMetaData: (ctx) => {
-      normalizePageNames(ctx)
-    },
-    ...pluginOptions,
-  })
-
-  return Array.isArray(result) ? result : [result]
-}
+/* -------------------------------------------------------------------------- */
+/* 页面命名规范化                                                              */
+/* -------------------------------------------------------------------------- */
 
 function pathToPascalCase(path: string) {
   if (!path) {
@@ -110,24 +85,56 @@ function pathToPascalCase(path: string) {
     .join('')
 }
 
-export function normalizePageNames(pageContext: PageContext) {
-  pageContext.pageMetaData.forEach((page) => {
-    if (page.name) {
-      return
-    }
-    page.name = pathToPascalCase(page.path)
-  })
-
-  pageContext.subPageMetaData.forEach((subPage) => {
-    subPage.pages.forEach((page) => {
-      if (subPage.root.startsWith(COMPONENTS_ASYNC_DIR_NAME)) {
-        page.layout = false
-      }
+function createNormalizePageNames(componentsAsyncDir: string) {
+  return (pageContext: PageContext) => {
+    pageContext.pageMetaData.forEach((page) => {
       if (page.name) {
         return
       }
-      const fullPath = [subPage.root, page.path].filter(Boolean).join('/')
-      page.name = pathToPascalCase(fullPath)
+      page.name = pathToPascalCase(page.path)
     })
+
+    pageContext.subPageMetaData.forEach((subPage) => {
+      subPage.pages.forEach((page) => {
+        if (subPage.root.startsWith(componentsAsyncDir)) {
+          page.layout = false
+        }
+        if (page.name) {
+          return
+        }
+        const fullPath = [subPage.root, page.path].filter(Boolean).join('/')
+        page.name = pathToPascalCase(fullPath)
+      })
+    })
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 插件创建                                                                    */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * 创建 Pages 模块插件
+ *
+ * 职责：
+ * 1. 首次生成 .univa/pages-config.ts（VitePluginUniPages 工厂执行时即读取 configSource）
+ * 2. 注册 onConfigUpdate，配置变化时自治更新产物
+ * 3. 创建 VitePluginUniPages（dts 输出到 .univa 目录）
+ */
+export function createPagesPlugin(resolved: ResolvedOptions, on: RegisterPluginHooks): Plugin[] {
+  syncPagesConfig(resolved)
+  on({ onConfigUpdate: syncPagesConfig })
+
+  const result = VitePluginUniPages({
+    dts: `${UNIVA_DIR_NAME}/uni-pages.d.ts`,
+    exclude: ['**/components/**/*.*'],
+    configSource: `${UNIVA_DIR_NAME}/pages-config.ts`,
+    onAfterMergePageMetaData: createNormalizePageNames(resolved.dirs.componentsAsyncDir),
+    dir: resolved.dirs.pages,
+    subPackages: resolved.dirs.subPackages,
+    debug: resolved.debug,
+    ...resolved.overrides.pages,
   })
+
+  return Array.isArray(result) ? result : [result]
 }

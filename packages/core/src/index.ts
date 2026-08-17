@@ -3,7 +3,7 @@
  */
 
 export { defineConfig } from './config'
-export { createUnivaPlugins, default as Univa } from './plugins'
+export { createUnivaPlugins, Univa } from './plugins'
 
 export type * from './types'
 

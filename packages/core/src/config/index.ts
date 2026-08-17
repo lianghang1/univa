@@ -8,3 +8,6 @@ import type { UnivaOptions } from '../types'
 export function defineConfig(config: UnivaOptions): UnivaOptions {
   return config
 }
+
+export { loadUserConfig } from './loader'
+export { resolveOptions } from './resolve'

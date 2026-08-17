@@ -1,11 +1,17 @@
 import { defineConfig } from '@univa/core'
 
 export default defineConfig({
-  debug: true,
+  debug: false,
   pages: {
     globalStyle: {
       navigationBarTitleText: 'Univa2',
     },
+    pages: [
+      {
+        path: 'pages/index',
+        type: 'home'
+      }
+    ]
   },
   imports: {
     apis: [
@@ -16,9 +22,6 @@ export default defineConfig({
         ],
       },
     ],
-  },
-  homePage: {
-    path: 'pages/index',
   },
   manifest: {
     'name': 'univa-app',

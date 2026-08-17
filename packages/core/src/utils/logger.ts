@@ -1,4 +1,4 @@
-import { ID } from '../constant'
+import { UNIVA_ID } from '../constant'
 
 /**
  * Univa 调试日志
@@ -15,6 +15,6 @@ export function setDebug(enabled: boolean): void {
 
 export function log(message: string, ...args: unknown[]): void {
   if (debugMode) {
-    console.log(`[${ID}]`, message, ...args)
+    console.log(`[${UNIVA_ID}]`, message, ...args)
   }
 }
