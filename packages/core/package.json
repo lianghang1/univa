@@ -69,33 +69,12 @@
     "dev": "tsup --watch"
   },
   "peerDependencies": {
-    "@dcloudio/uni-app": "catalog:",
-    "vite": "^5.2.8 || ^6.0.0",
+    "vite": "catalog:",
     "vue": "catalog:"
   },
   "dependencies": {
     "@antfu/utils": "catalog:",
     "@dcloudio/types": "catalog:",
-    "@dcloudio/uni-app": "catalog:",
-    "@dcloudio/uni-app-harmony": "catalog:",
-    "@dcloudio/uni-app-plus": "catalog:",
-    "@dcloudio/uni-automator": "catalog:",
-    "@dcloudio/uni-cli-shared": "catalog:",
-    "@dcloudio/uni-components": "catalog:",
-    "@dcloudio/uni-h5": "catalog:",
-    "@dcloudio/uni-mp-alipay": "catalog:",
-    "@dcloudio/uni-mp-baidu": "catalog:",
-    "@dcloudio/uni-mp-harmony": "catalog:",
-    "@dcloudio/uni-mp-jd": "catalog:",
-    "@dcloudio/uni-mp-kuaishou": "catalog:",
-    "@dcloudio/uni-mp-lark": "catalog:",
-    "@dcloudio/uni-mp-qq": "catalog:",
-    "@dcloudio/uni-mp-toutiao": "catalog:",
-    "@dcloudio/uni-mp-weixin": "catalog:",
-    "@dcloudio/uni-mp-xhs": "catalog:",
-    "@dcloudio/uni-quickapp-webview": "catalog:",
-    "@dcloudio/uni-stacktracey": "catalog:",
-    "@dcloudio/vite-plugin-uni": "catalog:",
     "@uni-helper/eslint-config": "catalog:",
     "@uni-helper/plugin-uni": "0.1.0",
     "@uni-helper/uni-pages-types": "0.4.6",
@@ -108,23 +87,22 @@
     "@uni-ku/bundle-optimizer": "2.2.0",
     "@uni-ku/root": "1.5.0",
     "@unocss/preset-legacy-compat": "66.0.0",
-    "@vue/runtime-core": "catalog:",
     "c12": "3.3.4",
     "defu": "6.1.7",
     "eslint": "catalog:",
     "jiti": "2.7.0",
-    "pinia": "2.0.36",
-    "pinia-plugin-persistedstate": "3.2.1",
     "sass": "1.99.0",
     "unocss": "66.0.0",
     "unplugin-auto-import": "20.0.0",
-    "vite-plugin-uni-polyfill": "0.1.0",
-    "vue": "catalog:"
+    "vite-plugin-uni-polyfill": "0.1.0"
   },
   "devDependencies": {
+    "@dcloudio/uni-app": "3.0.0-4080720251210001",
     "@types/node": "catalog:",
+    "@vue/runtime-core": "catalog:",
     "tsup": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vue": "catalog:"
   }
 }
