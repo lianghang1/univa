@@ -175,8 +175,8 @@ importers:
         specifier: 0.2.11
         version: 0.2.11(@unocss/preset-legacy-compat@66.0.0)(@unocss/preset-mini@66.7.5)(@unocss/rule-utils@66.7.5)(@unocss/vite@66.0.0(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))(vue@3.4.21(typescript@5.9.3)))(unocss-applet@0.13.8(unocss@66.0.0(postcss@8.5.26)(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))(vue@3.4.21(typescript@5.9.3))))(unocss@66.0.0(postcss@8.5.26)(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))(vue@3.4.21(typescript@5.9.3)))
       '@uni-helper/vite-plugin-uni-components':
-        specifier: 0.3.2
-        version: 0.3.2(rollup@4.62.4)(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))
+        specifier: 0.2.10
+        version: 0.2.10(rollup@4.62.4)
       '@uni-helper/vite-plugin-uni-layouts':
         specifier: 0.1.11
         version: 0.1.11(rollup@4.62.4)
@@ -2838,11 +2838,8 @@ packages:
       '@unocss/vite':
         optional: true
 
-  '@uni-helper/vite-plugin-uni-components@0.3.2':
-    resolution: {integrity: sha512-WYW0LwhbNrdj9wnAttXWU7V8POeG+WUTXfXoUOnp6/VUl64XzGFxyRQccn7MOkxJjLkbK8i23MD21igtP6J6wA==}
-    peerDependencies:
-      rollup: ^4.0.0
-      vite: ^5.0.0
+  '@uni-helper/vite-plugin-uni-components@0.2.10':
+    resolution: {integrity: sha512-RmTyqO7hCu7GwPtEwaiQbuyZG9Q7Mn+6PEYfLUyGjxzo+y+FP3PakaB0vctGB0snIUrR7DvuVbGxzsKTmgLIzA==}
 
   '@uni-helper/vite-plugin-uni-layouts@0.1.11':
     resolution: {integrity: sha512-FXdFATBFsHAl7xY9q3KO0EexMRGua/7txIiQTm2rQi1/bXcft4CUXldtuHl9Upq0V6CT47aanmfzcOF5CpHK7Q==}
@@ -7210,7 +7207,7 @@ snapshots:
       '@babel/traverse': 7.29.8
       '@babel/types': 7.25.6
       convert-source-map: 2.0.0
-      debug: 4.3.7
+      debug: 4.4.3
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -7956,7 +7953,7 @@ snapshots:
       '@babel/parser': 7.29.8
       '@babel/template': 7.29.7
       '@babel/types': 7.29.8
-      debug: 4.3.7
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -10436,18 +10433,17 @@ snapshots:
       '@unocss/preset-mini': 66.7.5
       '@unocss/vite': 66.0.0(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))(vue@3.4.21(typescript@5.9.3))
 
-  '@uni-helper/vite-plugin-uni-components@0.3.2(rollup@4.62.4)(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))':
+  '@uni-helper/vite-plugin-uni-components@0.2.10(rollup@4.62.4)':
     dependencies:
       '@rollup/pluginutils': 5.4.0(rollup@4.62.4)
       chokidar: 4.0.3
       debug: 4.4.3
       local-pkg: 1.2.1
       magic-string: 0.30.21
-      picomatch: 4.0.5
-      rollup: 4.62.4
+      minimatch: 10.2.6
       tinyglobby: 0.2.17
-      vite: 5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0)
     transitivePeerDependencies:
+      - rollup
       - supports-color
 
   '@uni-helper/vite-plugin-uni-layouts@0.1.11(rollup@4.62.4)':
@@ -10730,7 +10726,7 @@ snapshots:
       browserslist: 4.28.8
       browserslist-to-esbuild: 2.1.1(browserslist@4.28.8)
       core-js: 3.50.0
-      magic-string: 0.30.11
+      magic-string: 0.30.21
       regenerator-runtime: 0.14.1
       systemjs: 6.15.1
       terser: 5.50.0
