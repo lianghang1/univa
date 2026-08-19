@@ -1,7 +1,7 @@
 {
   "name": "@univa/core",
   "type": "module",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "🚀 开箱即用的 uni-app Vite 插件集，提供完整的开发体验",
   "author": "lianghang <libre1103@163.com>",
   "license": "MIT",
@@ -83,7 +83,7 @@
     "@uni-helper/vite-plugin-uni-components": "0.3.2",
     "@uni-helper/vite-plugin-uni-layouts": "0.1.11",
     "@uni-helper/vite-plugin-uni-manifest": "0.4.1",
-    "@uni-helper/vite-plugin-uni-pages": "0.4.7",
+    "@uni-helper/vite-plugin-uni-pages": "0.4.9",
     "@uni-ku/bundle-optimizer": "2.2.0",
     "@uni-ku/root": "1.5.0",
     "@unocss/preset-legacy-compat": "66.0.0",

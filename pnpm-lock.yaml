@@ -184,8 +184,8 @@ importers:
         specifier: 0.4.1
         version: 0.4.1(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))
       '@uni-helper/vite-plugin-uni-pages':
-        specifier: 0.4.7
-        version: 0.4.7(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))
+        specifier: 0.4.9
+        version: 0.4.9(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))
       '@uni-ku/bundle-optimizer':
         specifier: 2.2.0
         version: 2.2.0(chokidar@3.6.0)(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))(vue@3.4.21(typescript@5.9.3))
@@ -2802,8 +2802,8 @@ packages:
   '@uni-helper/uni-pages-types@0.4.6':
     resolution: {integrity: sha512-EdItWLyl3sr1ubPh098u/BeKD7+1YLmAtrRmEW0M8pLbguEeyHBPZ8aW94G5bmAPX5+IvBIqgEb+H/vgv68tbQ==}
 
-  '@uni-helper/uni-pages-types@0.4.7':
-    resolution: {integrity: sha512-f3JwjZJGG1vVW19Zzu13c1IDAH3TJY1ZYpXvoa1gGGmvESr5emQMZ6cby3r9+z2cTD6KBfCRMPuqaPvX7NevKw==}
+  '@uni-helper/uni-pages-types@0.4.9':
+    resolution: {integrity: sha512-XgXyFOEtyyS7sHQWSe3VLt2w2x5L77WSKeZOYuXue7YI8IvB13ZOWM/B09q8WqJCZP+cWK3yFGH+KqROGDJVMA==}
 
   '@uni-helper/uni-types@1.1.0':
     resolution: {integrity: sha512-6DaUYrXFMejxfQnQCsqeZ5E6oc5liB/4wsXni0sBK65iHaD4H/vbz+LMuK04Nabl8SoKDMuNs0BBEMYrAGcphg==}
@@ -2852,8 +2852,8 @@ packages:
     peerDependencies:
       vite: ^5.0.0
 
-  '@uni-helper/vite-plugin-uni-pages@0.4.7':
-    resolution: {integrity: sha512-fdoyQUGt810TSTq2hAZ/IIsrsPB81ozkesZPFXdLdr/G4j7NK5+HTkhOAigEErDEnlYMQbJz1Eri0348pEtUhQ==}
+  '@uni-helper/vite-plugin-uni-pages@0.4.9':
+    resolution: {integrity: sha512-ZE8kHMy+q213g8ws+bnqKi4I9fQ1kTR6BHSlsgo9daffQL+YtfjVwrVCqUqs3HgStNqVg0enjnNOTU/vQgNYzg==}
     peerDependencies:
       vite: ^5.0.0
 
@@ -10409,7 +10409,7 @@ snapshots:
 
   '@uni-helper/uni-pages-types@0.4.6': {}
 
-  '@uni-helper/uni-pages-types@0.4.7': {}
+  '@uni-helper/uni-pages-types@0.4.9': {}
 
   '@uni-helper/uni-types@1.1.0(@uni-helper/uni-app-types@1.1.0(typescript@5.9.3)(vue@3.4.21(typescript@5.9.3)))(@uni-helper/uni-cloud-types@1.1.0(typescript@5.9.3)(vue@3.4.21(typescript@5.9.3)))(@uni-helper/uni-ui-types@1.1.0(@uni-helper/uni-app-types@1.1.0(typescript@5.9.3)(vue@3.4.21(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.21(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.21(typescript@5.9.3))':
     dependencies:
@@ -10475,13 +10475,13 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@uni-helper/vite-plugin-uni-pages@0.4.7(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))':
+  '@uni-helper/vite-plugin-uni-pages@0.4.9(vite@5.4.21(@types/node@24.13.3)(sass@1.102.0)(terser@5.50.0))':
     dependencies:
       '@babel/generator': 7.29.8
       '@babel/types': 7.29.8
       '@types/proper-lockfile': 4.1.4
       '@uni-helper/uni-env': 0.3.1
-      '@uni-helper/uni-pages-types': 0.4.7
+      '@uni-helper/uni-pages-types': 0.4.9
       '@vue/compiler-sfc': 3.4.38
       ast-kit: 1.4.3
       chokidar: 3.6.0
