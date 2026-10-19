@@ -3,6 +3,9 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+  },
   "scripts": {
     "dev": "uni",
     "build": "uni build",
@@ -10,9 +13,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "uvm": "npx @dcloudio/uvm@latest && node ./scripts/postupgrade.js"
-  },
-  "engines": {
-    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-5020420260813003",
