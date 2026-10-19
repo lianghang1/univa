@@ -1,5 +1,5 @@
 import type { PagesConfig } from '@uni-helper/uni-pages-types'
-import type { PageContext } from '@uni-helper/vite-plugin-uni-pages'
+import type { InternalPages, SubPackages } from '@uni-helper/vite-plugin-uni-pages'
 import type { Plugin } from 'vite'
 import type { RegisterPluginHooks, ResolvedOptions } from '../types'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
@@ -86,15 +86,15 @@ function pathToPascalCase(path: string) {
 }
 
 function createNormalizePageNames(componentsAsyncDir: string) {
-  return (pageContext: PageContext) => {
-    pageContext.pageMetaData.forEach((page) => {
+  return (pageMetaData: InternalPages, subPageMetaData: SubPackages) => {
+    pageMetaData.forEach((page) => {
       if (page.name) {
         return
       }
       page.name = pathToPascalCase(page.path)
     })
 
-    pageContext.subPageMetaData.forEach((subPage) => {
+    subPageMetaData.forEach((subPage) => {
       subPage.pages.forEach((page) => {
         if (subPage.root.startsWith(componentsAsyncDir)) {
           page.layout = false

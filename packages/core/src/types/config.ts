@@ -1,4 +1,4 @@
-import type { PageMetaDatum, PagesConfig } from '@uni-helper/uni-pages-types'
+import type { PagesConfig } from '@uni-helper/uni-pages-types'
 import type { UserUniPresetOptions } from '@uni-helper/unocss-preset-uni'
 import type { ComponentResolver } from '@uni-helper/vite-plugin-uni-components'
 import type { UserManifestConfig } from '@uni-helper/vite-plugin-uni-manifest'

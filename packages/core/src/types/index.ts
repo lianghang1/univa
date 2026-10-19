@@ -36,10 +36,11 @@ export type { UserOptions as PagesPluginOptions } from '@uni-helper/vite-plugin-
 
 export type {
   definePage,
+  InternalPages,
   PageContext,
   PagePath,
   ResolvedOptions as PagesResolvedOptions,
-  SubPageMetaDatum,
+  SubPackages,
 } from '@uni-helper/vite-plugin-uni-pages'
 
 export type { ConfigBase as UnoCSSConfigBase } from 'unocss'

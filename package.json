@@ -3,8 +3,7 @@
   "author": "lianghang",
   "license": "MIT",
   "engines": {
-    "node": ">=20",
-    "pnpm": ">=9"
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
