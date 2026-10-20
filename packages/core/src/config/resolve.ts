@@ -15,7 +15,7 @@ const DEFAULTS = {
   pagesDir: 'pages',
   layoutsDir: 'layouts',
   /** API 自动导入：预设名（vue/uni-app）+ 目录 glob */
-  apis: ['vue', 'uni-app', 'composables/**', 'store/**', 'hooks/**', 'constants/**'],
+  apis: ['vue', 'uni-app', 'composables/**', 'store/**', 'hooks/**'],
   /** 组件自动导入目录 */
   components: ['components', 'components-biz'],
   uniPreset: { attributify: false },
